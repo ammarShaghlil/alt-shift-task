@@ -4,16 +4,21 @@ let zoomLvl = 0;
 
 export const changeZoom = (value) => {
   try {
+    var myImg = document.getElementById("map");
+
+    var currWidth = myImg.clientWidth;
+    var currHeight = myImg.clientHeight;
+
+    if (currWidth < 600 && value < 0) {
+      console.log('Max Zoom out level reached');
+      return;
+    }
+
     if (value > 0) {
       zoomLvl++;
     } else {
       zoomLvl--;
     }
-
-    var myImg = document.getElementById("map");
-
-    var currWidth = myImg.clientWidth;
-    var currHeight = myImg.clientHeight;
 
     const newWidth = currWidth + value;
     const newHeight = currHeight + value;
@@ -28,27 +33,33 @@ export const changeZoom = (value) => {
 
     const zoomLvlEl = document.getElementById("zoom-lvl");
     zoomLvlEl.innerText = zoomLvl;
-  } catch (error) {}
+  } catch (error) {
+    console.error("error While Zoomin in - out");
+  }
 };
 
 export const drowAnchors = () => {
-  const anchorContainer = document.getElementById("anchor-layer");
-  anchorContainer.innerHTML = "";
+  try {
+    const anchorContainer = document.getElementById("anchor-layer");
+    anchorContainer.innerHTML = "";
 
-  let drowChilds = false;
-  if (zoomLvl > 10) {
-    drowChilds = true;
-  }
-
-  for (const anchor of AnchorsList) {
-    if (drowChilds && anchor.childs.length > 0) {
-      for (const anchorChild of anchor.childs) {
-        AddAnchorElement(anchorChild, anchorContainer);
-      }
-      continue;
-    } else {
-      AddAnchorElement(anchor, anchorContainer);
+    let drowChilds = false;
+    if (zoomLvl > 10) {
+      drowChilds = true;
     }
+
+    for (const anchor of AnchorsList) {
+      if (drowChilds && anchor.childs.length > 0) {
+        for (const anchorChild of anchor.childs) {
+          AddAnchorElement(anchorChild, anchorContainer);
+        }
+        continue;
+      } else {
+        AddAnchorElement(anchor, anchorContainer);
+      }
+    }
+  } catch (error) {
+    console.error("error While Drowing the anchors");
   }
 };
 

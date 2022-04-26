@@ -1,31 +1,35 @@
 export const showAnchorDetails = (event) => {
-  const id = event.target.dataset.id;
+  try {
+    const id = event.target.dataset.id;
 
-  const details = getSelectedAnchor(id);
+    const details = getSelectedAnchor(id);
 
-  if (!details) {
-    return "No Anchor Found";
+    if (!details) {
+      return "No Anchor Found";
+    }
+
+    let taskSubDev = document.getElementById("task-sub");
+    taskSubDev.innerHTML = "";
+    const parentCardRel = document.getElementById("parent-card-relations");
+    parentCardRel.innerHTML = "";
+    for (let index = 0; index < details.length; index++) {
+      const detail = details[index];
+      drowPortInParent(index + 1);
+      drowPortDetails(index + 1, detail);
+    }
+    const tasksDetails = document.getElementById("task-details");
+    tasksDetails.classList.add("show");
+  } catch (error) {
+    console.error("Error While Viewing Anchor Details");
   }
-
-  let taskSubDev = document.getElementById("task-sub");
-  taskSubDev.innerHTML = "";
-  const parentCardRel = document.getElementById('parent-card-relations');
-  parentCardRel.innerHTML = '';
-  for (let index = 0; index < details.length; index++) {
-    const detail = details[index];
-    drowPortInParent(index + 1);
-    drowPortDetails(index + 1, detail);
-  }
-  const tasksDetails = document.getElementById("task-details");
-  tasksDetails.classList.add("show");
 };
 
 const drowPortInParent = (index) => {
-  const divEl = document.createElement('div');
-  divEl.classList.add('relation');
+  const divEl = document.createElement("div");
+  divEl.classList.add("relation");
   divEl.innerText = index;
 
-  const parentCardRel = document.getElementById('parent-card-relations');
+  const parentCardRel = document.getElementById("parent-card-relations");
   parentCardRel.appendChild(divEl);
 };
 
