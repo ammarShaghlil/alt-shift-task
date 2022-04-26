@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head class="theme-black">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/navigation-style.css">
+    <link rel="stylesheet" href="../styles/map.css">
+    <link rel="stylesheet" href="../styles/slider.css">
+    <link rel="stylesheet" href="../styles/card.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap" rel="stylesheet">
+
+    <script src="../scripts/globals.js"></script>
+    <script type=module src="../app.js" defer></script>
+</head>
+
+<body>
+    <header class="header-main">
+        <!-- <h1 class="header-main__title">Map Demo</h1> -->
+        <!-- <nav class="header-main__navigation">
+            <ul class="header-main__list-item">
+                <li class="header-main__item"><a href="/pages/index.html">HOME</a></li>
+                <li class="header-main__item"><a href="/pages/index.html">HOME</a></li>
+            </ul>
+        </nav> -->
+        <h1 class="header-main__title">Zoom Level : <label id="zoom-lvl">0</label> </h1>
+        <div class="theme-selection">
+            <label for="theme-select">Select Theme</label>
+            <select name="theme-select" id="theme-select" class="theme-select">
+                <option value="dark">Dark</option>
+                <option value="light" selected>Light</option>
+            </select>
+        </div>
+    </header>
+    <main class="main-map">
+        
+        <div class="main-map__map-container">
+            <img id="map" src="../image/jordan-map.jpg" alt="" srcset="">
+        </div>
+        <div class="main-map__ancor-layer" id="anchor-layer">
+            
+        </div>
+        <div class="main-map__task-details" id="task-details">
+            <div class="main-map__task-main">
+                <div class="card">
+                    <div class="card-head"></div>
+                    <div class="card-content">
+                        <img src="../image/device.jpg" alt="">
+                    </div>
+                    <div class="card-footer">
+                        PORTS
+                    </div>
+                    <div class="card-relations" id="parent-card-relations">
+                        <div class="relation">A</div>
+                        <div class="relation">B</div>
+                        <div class="relation">C</div>
+                        <div class="relation">D</div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-map__task-sub" id="task-sub">
+               
+            </div>
+        </div>
+        
+    </main>
+    
+    <div id="navbar">
+        <button type="button" id="zoom-in">+</button>
+        <button type="button" id="zoom-out">-</button>
+    </div>
+
+    <template id="card-sub-template">
+        <div class="card-sub">
+            <div class="card-relations">
+                <div class="relation"><label id="card-number"></label></div>
+            </div>
+            <div class="card-content">
+                <div class="icon">P</div>
+                <div class="title"><label id="card-title"></label></div>
+                <div class="content-details">
+                    <div class="content-details__value">
+                        <div><i class="content-details__value-unit">A</i><label id="current-value"></label></div>
+                        <div class="content-details__value-desc"><i >Current (A)</i></div>
+                    </div>
+                    <div class="content-details__value">
+                        <div><i class="content-details__value-unit">W</i><label id="power-value"></label></div>
+                        <div class="content-details__value-desc"><i >Power (W)</i></div>
+                    </div>
+                    <div class="content-details__value">
+                        <div><i class="content-details__value-unit">kWh</i><label id="energy-value"></label></div>
+                        <div class="content-details__value-desc"><i >Energy (kWh)</i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <label id="date"></label>
+                <label class="switch">
+                    <input id="check-box" type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+            </div>
+        </div>
+    </template>
+</body>
+</html>
